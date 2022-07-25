@@ -1,22 +1,22 @@
 
-package com.example.cryptopricechecker; ;
+package com.example.cryptopricechecker.cryptos; ;
 
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 
-public class Bitcoin {
+public class Ripple {
 
     @SerializedName("usd")
     @Expose
-    private Integer usd;
+    private Double usd;
 
-    public Integer getUsd() {
+    public Double getUsd() {
         return usd;
     }
 
-    public void setUsd(Integer usd) {
+    public void setUsd(Double usd) {
         this.usd = usd;
     }
 

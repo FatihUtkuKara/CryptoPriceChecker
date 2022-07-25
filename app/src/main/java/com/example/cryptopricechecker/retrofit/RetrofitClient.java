@@ -1,4 +1,4 @@
-package com.example.cryptopricechecker;
+package com.example.cryptopricechecker.retrofit;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
