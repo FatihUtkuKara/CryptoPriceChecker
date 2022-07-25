@@ -13,38 +13,19 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.cryptopricechecker.AdaActivity;
-import com.example.cryptopricechecker.AlgoActivity;
-import com.example.cryptopricechecker.BitcoinActivity;
-import com.example.cryptopricechecker.BnbActivity;
-import com.example.cryptopricechecker.CakeActivity;
-import com.example.cryptopricechecker.CeloActivity;
-import com.example.cryptopricechecker.DotActivity;
-import com.example.cryptopricechecker.EosActivity;
-import com.example.cryptopricechecker.EthereumActivity;
-import com.example.cryptopricechecker.IcpActivity;
-import com.example.cryptopricechecker.LinkActivity;
-import com.example.cryptopricechecker.LtcActivity;
-import com.example.cryptopricechecker.MoneroActivity;
-import com.example.cryptopricechecker.NearActivity;
-import com.example.cryptopricechecker.NeutrinoActivity;
+import com.example.cryptopricechecker.DetailActivity;
 import com.example.cryptopricechecker.R;
-import com.example.cryptopricechecker.SolActivity;
-import com.example.cryptopricechecker.TronActivity;
-import com.example.cryptopricechecker.UniSwapActivity;
-import com.example.cryptopricechecker.XlmActivity;
-import com.example.cryptopricechecker.XrpActivity;
 import com.example.cryptopricechecker.retrofit.Coins;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RvAdapter extends RecyclerView.Adapter<RvAdapter.CardViewDesignObjectsHolder> {
     private Context mContext;
-    private List<Coins> cryptoList;
+    private List<Coins> cryptoList = new ArrayList<Coins>();
 
-    public RvAdapter(Context mContext, List<Coins> cryptoList) {
+    public RvAdapter(Context mContext) {
         this.mContext = mContext;
-        this.cryptoList = cryptoList;
     }
 
     @NonNull
@@ -125,99 +106,24 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.CardViewDesignObje
 
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Toast.makeText(mContext,  coin.getCoinName()+ " selected ", Toast.LENGTH_SHORT).show();
-
-               // if
-
-            if(coin.getCoinName().equals("Bitcoin")) {
-                Intent newIntent = new Intent(mContext, BitcoinActivity.class);
-                mContext.startActivity(newIntent); }
-
-            if(coin.getCoinName().equals("Ethereum")) {
-                Intent newIntent = new Intent(mContext, EthereumActivity.class);
-                mContext.startActivity(newIntent); }
-
-            if(coin.getCoinName().equals("Bnb")) {
-                Intent newIntent = new Intent(mContext, BnbActivity.class);
-                mContext.startActivity(newIntent); }
-
-            if(coin.getCoinName().equals("Near")) {
-                Intent newIntent = new Intent(mContext, NearActivity.class);
-                mContext.startActivity(newIntent); }
-
-            if(coin.getCoinName().equals("Xrp")) {
-                Intent newIntent = new Intent(mContext, XrpActivity.class);
-                mContext.startActivity(newIntent); }
-
-            if(coin.getCoinName().equals("Link")) {
-                Intent newIntent = new Intent(mContext, LinkActivity.class);
-                mContext.startActivity(newIntent); }
-
-            if(coin.getCoinName().equals("Eos")) {
-                Intent newIntent = new Intent(mContext, EosActivity.class);
-                mContext.startActivity(newIntent); }
-
-            if(coin.getCoinName().equals("Tron")) {
-                Intent newIntent = new Intent(mContext, TronActivity.class);
-                mContext.startActivity(newIntent); }
-
-            if(coin.getCoinName().equals("Icp")) {
-                Intent newIntent = new Intent(mContext, IcpActivity.class);
-                mContext.startActivity(newIntent); }
-
-            if(coin.getCoinName().equals("Monero")) {
-                Intent newIntent = new Intent(mContext, MoneroActivity.class);
-                mContext.startActivity(newIntent); }
-
-            if(coin.getCoinName().equals("Cake")) {
-                Intent newIntent = new Intent(mContext, CakeActivity.class);
-                mContext.startActivity(newIntent); }
-
-            if(coin.getCoinName().equals("Ada")) {
-                Intent newIntent = new Intent(mContext, AdaActivity.class);
-                mContext.startActivity(newIntent); }
-
-            if(coin.getCoinName().equals("Uniswap")) {
-                Intent newIntent = new Intent(mContext, UniSwapActivity.class);
-                mContext.startActivity(newIntent); }
-
-            if(coin.getCoinName().equals("Xlm")) {
-                Intent newIntent = new Intent(mContext, XlmActivity.class);
-                mContext.startActivity(newIntent); }
-
-            if(coin.getCoinName().equals("Dot")) {
-                Intent newIntent = new Intent(mContext, DotActivity.class);
-                mContext.startActivity(newIntent); }
-
-            if(coin.getCoinName().equals("Celo")) {
-                Intent newIntent = new Intent(mContext, CeloActivity.class);
-                mContext.startActivity(newIntent); }
-
-            if(coin.getCoinName().equals("Sol")) {
-                Intent newIntent = new Intent(mContext, SolActivity.class);
-                mContext.startActivity(newIntent); }
-
-            if(coin.getCoinName().equals("Ltc")) {
-                Intent newIntent = new Intent(mContext, LtcActivity.class);
-                mContext.startActivity(newIntent); }
-
-            if(coin.getCoinName().equals("Algo")) {
-                Intent newIntent = new Intent(mContext, AlgoActivity.class);
-                mContext.startActivity(newIntent); }
-
-            if(coin.getCoinName().equals("Neutrino")) {
-                Intent newIntent = new Intent(mContext, NeutrinoActivity.class);
-                mContext.startActivity(newIntent); }
-
-            } });
-
+            public void onClick(View view) {
+                Intent i = new Intent(mContext, DetailActivity.class);
+                i.putExtra("coinName", coin.getCoinName());
+                mContext.startActivity(i);
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
 
-        return 20;
+        return cryptoList.size();
+    }
+
+    public void setData(List<Coins> cryptoList) {
+        this.cryptoList.clear();
+        this.cryptoList.addAll(cryptoList);
+        notifyDataSetChanged();
     }
 
     public class CardViewDesignObjectsHolder extends RecyclerView.ViewHolder{

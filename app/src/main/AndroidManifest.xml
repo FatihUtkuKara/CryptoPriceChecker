@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.cryptopricechecker">
+    package="com.example.cryptopricechecker" >
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -14,76 +14,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CryptoPriceChecker"
-        tools:targetApi="31">
+        tools:targetApi="31" >
         <activity
-            android:name=".AlgoActivity"
-            android:exported="false" />
-        <activity
-            android:name=".AdaActivity"
-            android:exported="false" />
-        <activity
-            android:name=".NeutrinoActivity"
-            android:exported="false" />
-        <activity
-            android:name=".cryptoActivities.AlgoActivity"
-            android:exported="false" />
-        <activity
-            android:name=".LtcActivity"
-            android:exported="false" />
-        <activity
-            android:name=".SolActivity"
-            android:exported="false" />
-        <activity
-            android:name=".CeloActivity"
-            android:exported="false" />
-        <activity
-            android:name=".DotActivity"
-            android:exported="false" />
-        <activity
-            android:name=".XlmActivity"
-            android:exported="false" />
-        <activity
-            android:name=".UniSwapActivity"
-            android:exported="false" />
-        <activity
-            android:name=".cryptoActivities.AdaActivity"
-            android:exported="false" />
-        <activity
-            android:name=".CakeActivity"
-            android:exported="false" />
-        <activity
-            android:name=".MoneroActivity"
-            android:exported="false" />
-        <activity
-            android:name=".IcpActivity"
-            android:exported="false" />
-        <activity
-            android:name=".TronActivity"
-            android:exported="false" />
-        <activity
-            android:name=".EosActivity"
-            android:exported="false" />
-        <activity
-            android:name=".LinkActivity"
-            android:exported="false" />
-        <activity
-            android:name=".XrpActivity"
-            android:exported="false" />
-        <activity
-            android:name=".NearActivity"
-            android:exported="false" />
-        <activity
-            android:name=".BnbActivity"
-            android:exported="false" />
-        <activity
-            android:name=".EthereumActivity"
-            android:exported="false" />
-        <activity
-            android:name=".BitcoinActivity"
+            android:name=".DetailActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
