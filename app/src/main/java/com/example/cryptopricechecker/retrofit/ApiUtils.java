@@ -12,10 +12,4 @@ public class ApiUtils {
 
     }
 }
-//                  cryptoList.add(String.valueOf(crypto.getEthereum().getUsd()));
-//                    cryptoList.add(String.valueOf(crypto.getBinancecoin().getUsd()));
-//                    cryptoList.add(String.valueOf(crypto.getNear().getUsd()));
-//                    cryptoList.add(String.valueOf(crypto.getAlgorand().getUsd()));
-//                    cryptoList.add(String.valueOf(crypto.getBitcoin().getUsd()));
-//                    cryptoList.add(String.valueOf(crypto.getRipple().getUsd()));
-//                    cryptoList.add(String.valueOf(crypto.getTron().getUsd()));
+

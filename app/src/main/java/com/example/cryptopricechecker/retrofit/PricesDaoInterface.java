@@ -1,6 +1,7 @@
 package com.example.cryptopricechecker.retrofit;
 
 import com.example.cryptopricechecker.cryptos.CryptoPrice;
+import com.example.cryptopricechecker.details.BaseJson2POJO;
 
 import java.util.Map;
 
@@ -17,7 +18,7 @@ public interface PricesDaoInterface {
                 );
 
         @GET("coins/{coin_id}")
-        Call<CryptoPrice> getCoinDetails(@Path(value = "coin_id", encoded = true) String coinId);
+        Call<BaseJson2POJO> getCoinDetails(@Path(value = "coin_id", encoded = true) String coinId);
 
 
 

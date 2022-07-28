@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.widget.Toast;
 
 import com.example.cryptopricechecker.adapter.RvAdapter;
 import com.example.cryptopricechecker.cryptos.CryptoPrice;
@@ -36,9 +37,8 @@ public class MainActivity extends AppCompatActivity {
 
         rv = findViewById(R.id.rv);
         rv.setHasFixedSize(true);
-        rv.setLayoutManager(new StaggeredGridLayoutManager(4,StaggeredGridLayoutManager.VERTICAL));
+        rv.setLayoutManager(new StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.VERTICAL));
         cryptoList = new ArrayList<>();
-       // prices = findViewById(R.id.prices);
         pricesDıf = ApiUtils.getPricesDaoInterface();
         adapter = new RvAdapter(MainActivity.this);
         rv.setAdapter(adapter);
