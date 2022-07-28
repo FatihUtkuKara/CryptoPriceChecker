@@ -2,12 +2,16 @@ package com.example.cryptopricechecker;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.cryptopricechecker.details.BaseJson2POJO;
 import com.example.cryptopricechecker.retrofit.ApiUtils;
 import com.example.cryptopricechecker.retrofit.PricesDaoInterface;
@@ -21,49 +25,52 @@ public class DetailActivity extends AppCompatActivity {
     private PricesDaoInterface detailDıf;
     ImageView imageView;
     TextView textView;
+    BaseJson2POJO cryptodetail;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
-        //imageView = findViewById(R.id.imageView);
+        imageView = findViewById(R.id.imageView);
         textView = findViewById(R.id.textView);
         detailDıf = ApiUtils.getPricesDaoInterface();
+
         if (getIntent().hasExtra("coinName")) {
             coinName = getIntent().getStringExtra("coinName");
-            Toast.makeText(this, coinName, Toast.LENGTH_SHORT).show();
-
-
         }
-
-
         getCryptoDetail();
-
-
     }
 
 
     public void getCryptoDetail() {
-
-
-
         detailDıf.getCoinDetails("bitcoin").enqueue(new Callback<BaseJson2POJO>() {
             @Override
             public void onResponse(Call<BaseJson2POJO> call, Response<BaseJson2POJO> response) {
-
-                BaseJson2POJO cryptodetail = response.body();
-
-               textView.setText(cryptodetail.getDescription().getEn());
-               Log.d("deneme",cryptodetail.getName());
-
-                Toast.makeText(DetailActivity.this, "deneme", Toast.LENGTH_SHORT).show();
+                cryptodetail = response.body();
+                populateUI();
             }
 
             @Override
             public void onFailure(Call<BaseJson2POJO> call, Throwable t) {
-
+                Log.e("DetailActivity", t.getLocalizedMessage());
             }
         });
 
 
+    }
+
+    private void populateUI() {
+        Glide.with(getApplicationContext()).
+                load(cryptodetail.getImage().getLarge()).into(imageView);
+
+        textView.setText(cryptodetail.getDescription().getEn());
+
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW,
+                        Uri.parse(cryptodetail.getLinks().getHomepage().get(0)));
+                startActivity(browserIntent);
+            }
+        });
     }
 }
