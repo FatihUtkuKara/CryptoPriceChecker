@@ -16,37 +16,62 @@ import com.example.cryptopricechecker.details.BaseJson2POJO;
 import com.example.cryptopricechecker.retrofit.ApiUtils;
 import com.example.cryptopricechecker.retrofit.PricesDaoInterface;
 
+import java.util.Locale;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class DetailActivity extends AppCompatActivity {
-    private String coinName = "";
+    public String coinName = "";
     private PricesDaoInterface detailDıf;
-    ImageView imageView;
-    TextView textView;
+    ImageView image;
+    TextView description;
     BaseJson2POJO cryptodetail;
+    TextView genesisDate;
+    TextView symbol;
+    TextView name;
+    TextView currentPrice;
+    TextView currentPriceBtc;
+    TextView ath;
+    TextView totalSupply;
+    TextView marketCapRank;
+    TextView marketCap;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
-        imageView = findViewById(R.id.imageView);
-        textView = findViewById(R.id.textView);
+        image = findViewById(R.id.image);
+        currentPrice = findViewById(R.id.currentPrice);
+        ath = findViewById(R.id.ath);
+        totalSupply = findViewById(R.id.totalSupply);
+        marketCap = findViewById(R.id.marketCap);
+        marketCapRank = findViewById(R.id.marketCapRank);
+        description = findViewById(R.id.description);
         detailDıf = ApiUtils.getPricesDaoInterface();
+        name =findViewById(R.id.name);
+        genesisDate=findViewById(R.id.genesisDate);
+        symbol =findViewById(R.id.symbol);
+        currentPriceBtc = findViewById(R.id.currentPriceBtc);
 
         if (getIntent().hasExtra("coinName")) {
-            coinName = getIntent().getStringExtra("coinName");
+            coinName = getIntent().getStringExtra("coinName").toLowerCase(Locale.ROOT);
+            Toast.makeText(this, coinName, Toast.LENGTH_SHORT).show();
+
         }
         getCryptoDetail();
+
     }
 
 
     public void getCryptoDetail() {
-        detailDıf.getCoinDetails("bitcoin").enqueue(new Callback<BaseJson2POJO>() {
+        detailDıf.getCoinDetails(coinName).enqueue(new Callback<BaseJson2POJO>() {
             @Override
             public void onResponse(Call<BaseJson2POJO> call, Response<BaseJson2POJO> response) {
                 cryptodetail = response.body();
                 populateUI();
+
             }
 
             @Override
@@ -59,12 +84,11 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     private void populateUI() {
+
         Glide.with(getApplicationContext()).
-                load(cryptodetail.getImage().getLarge()).into(imageView);
+                load(cryptodetail.getImage().getLarge()).into(image);
 
-        textView.setText(cryptodetail.getDescription().getEn());
-
-        imageView.setOnClickListener(new View.OnClickListener() {
+        image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW,
@@ -72,5 +96,25 @@ public class DetailActivity extends AppCompatActivity {
                 startActivity(browserIntent);
             }
         });
+
+        description.setText(cryptodetail.getDescription().getEn());
+
+        symbol.setText(cryptodetail.getSymbol());
+
+        genesisDate.setText(cryptodetail.getGenesisDate());
+
+        name.setText(cryptodetail.getName());
+
+        currentPrice.setText(String.valueOf(cryptodetail.getMarketData().getCurrentPrice().getUsd()));
+
+        marketCap.setText(String.valueOf(cryptodetail.getMarketData().getMarketCap().getUsd()));
+
+        currentPriceBtc.setText(String.valueOf(cryptodetail.getMarketData().getCurrentPrice().getBtc()));
+
+        ath.setText(String.valueOf(cryptodetail.getMarketData().getAth().getUsd()));
+
+        marketCapRank.setText(String.valueOf(cryptodetail.getMarketCapRank()));
+
+        totalSupply.setText(String.valueOf(cryptodetail.getMarketData().getTotalSupply()));
     }
 }

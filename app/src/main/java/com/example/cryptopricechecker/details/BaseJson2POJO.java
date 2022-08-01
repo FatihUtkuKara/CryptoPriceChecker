@@ -28,6 +28,15 @@ public class BaseJson2POJO {
     @SerializedName("genesis_date")
     String genesis_date;
 
+    @SerializedName("market_data")
+    MarketData marketData;
+
+    @SerializedName("market_cap_rank")
+    int marketCapRank;
+
+
+
+
 
     public void setId(String id) {
         this.id = id;
@@ -50,6 +59,7 @@ public class BaseJson2POJO {
         return name;
     }
 
+
     public void setDescription(Description description) {
         this.description = description;
     }
@@ -68,4 +78,22 @@ public class BaseJson2POJO {
     public String getGenesisDate() {
         return genesis_date;
     }
+
+   public void setMarketData(MarketData marketData) {
+        this.marketData = marketData;
+    }
+   public MarketData getMarketData() {
+        return marketData;
+    }
+
+
+    public void setMarketCapRank(int marketCapRank) {
+        this.marketCapRank = marketCapRank;
+    }
+    public int getMarketCapRank() {
+        return marketCapRank;
+    }
+
+
+
 }

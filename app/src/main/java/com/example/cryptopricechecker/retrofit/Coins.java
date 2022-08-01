@@ -19,22 +19,22 @@ public class Coins {
         this.coinPrice = coinPrice;
     }
 
-    public String getCoinImage() {
-        return coinImage;
+    public String getCoinCode() {
+        return coinCode;
     }
 
-    public void setCoinImage(String coinImage) {
-        this.coinImage = coinImage;
+    public void setCoinCode(String coinCode) {
+        this.coinCode = coinCode;
     }
 
     private String coinPrice;
 
-    public Coins(String coinName, String coinPrice, String coinImage) {
+    public Coins(String coinName, String coinPrice, String coinCode) {
         this.coinName = coinName;
         this.coinPrice = coinPrice;
-        this.coinImage = coinImage;
+        this.coinCode = coinCode;
     }
 
-    private String coinImage ;
+    private String coinCode ;
 
 }

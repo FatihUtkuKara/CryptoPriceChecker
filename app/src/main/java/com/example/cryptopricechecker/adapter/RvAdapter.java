@@ -108,7 +108,7 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.CardViewDesignObje
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(mContext, DetailActivity.class);
-                i.putExtra("coinName", coin.getCoinName());
+                i.putExtra("coinName", coin.getCoinCode());
                 mContext.startActivity(i);
             }
         });

@@ -165,10 +165,8 @@ public class CryptoPrice {
         this.ethereum = ethereum;
     }
 
-    public Solana getSolana() {
-        return solana;
+    public Solana getSolana() { return solana;
     }
-
     public void setSolana(Solana solana) {
         this.solana = solana;
     }
