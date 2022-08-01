@@ -30,7 +30,6 @@ public class DetailActivity extends AppCompatActivity {
     BaseJson2POJO cryptodetail;
     TextView genesisDate;
     TextView symbol;
-    TextView name;
     TextView currentPrice;
     TextView currentPriceBtc;
     TextView ath;
@@ -50,16 +49,15 @@ public class DetailActivity extends AppCompatActivity {
         marketCapRank = findViewById(R.id.marketCapRank);
         description = findViewById(R.id.description);
         detailDıf = ApiUtils.getPricesDaoInterface();
-        name =findViewById(R.id.name);
         genesisDate=findViewById(R.id.genesisDate);
         symbol =findViewById(R.id.symbol);
         currentPriceBtc = findViewById(R.id.currentPriceBtc);
 
         if (getIntent().hasExtra("coinName")) {
             coinName = getIntent().getStringExtra("coinName").toLowerCase(Locale.ROOT);
-            Toast.makeText(this, coinName, Toast.LENGTH_SHORT).show();
-
         }
+
+
         getCryptoDetail();
 
     }
@@ -103,8 +101,6 @@ public class DetailActivity extends AppCompatActivity {
 
         genesisDate.setText(cryptodetail.getGenesisDate());
 
-        name.setText(cryptodetail.getName());
-
         currentPrice.setText(String.valueOf(cryptodetail.getMarketData().getCurrentPrice().getUsd()));
 
         marketCap.setText(String.valueOf(cryptodetail.getMarketData().getMarketCap().getUsd()));
@@ -116,5 +112,9 @@ public class DetailActivity extends AppCompatActivity {
         marketCapRank.setText(String.valueOf(cryptodetail.getMarketCapRank()));
 
         totalSupply.setText(String.valueOf(cryptodetail.getMarketData().getTotalSupply()));
+
+        String title = cryptodetail.getName() + " / " + coinName;
+
+        getSupportActionBar().setTitle(title);
     }
 }

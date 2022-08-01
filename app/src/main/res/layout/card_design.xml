@@ -52,7 +52,7 @@
                 android:layout_marginStart="34dp"
                 android:text="TextView"
                 android:textAlignment="center"
-                android:textColor="#E2DCC8"
+                android:textColor="#D82548"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
